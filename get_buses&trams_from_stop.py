@@ -1,6 +1,8 @@
+from flask import Flask, request, jsonify # type: ignore, douc sa flask debilko
 import requests
 from bs4 import BeautifulSoup
 
+# url should be fetched from html file index.html
 url = 'https://www.dpmk.sk/cp/zastavka/184'
 
 def get_links_from_stop(url):

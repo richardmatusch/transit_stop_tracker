@@ -23,8 +23,17 @@ function selectStop() {
     var dropdown = document.getElementById("bus-stops");
     var selectedUrl = dropdown.value;
     if (selectedUrl) {
-        console.log("Selected URL:", selectedUrl);
-        // Further actions with selectedUrl can be added here
+        // send the selected URL to the Flask server... chatgpt script "barz tomu nechapem sa priznam"
+        fetch("http://127.0.0.1:5000/select_stop", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ url: selectedUrl })
+        })
+        .then(response => response.json())
+        .then(data => console.log("Server response:", data))
+        .catch(error => console.error("Error:", error));
     }
 }
 </script>
