@@ -1,4 +1,3 @@
-from flask import Flask, request, jsonify # type: ignore # type: ignore, douc sa flask debilko
 import requests
 from bs4 import BeautifulSoup
 
