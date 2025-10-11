@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-# url should be fetched from html file index.html
+# old hospital tram/bus stop url
 url = 'https://www.dpmk.sk/cp/zastavka/184'
 
 def get_links_from_stop(url):
@@ -20,6 +20,4 @@ def get_links_from_stop(url):
 
     return links
 
-old_hospital = get_links_from_stop(url)
-
-print(old_hospital)
+old_hospital_lines = get_links_from_stop(url)

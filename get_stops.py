@@ -21,4 +21,3 @@ all_stops = get_stops("https://www.dpmk.sk/cp")
 
 for stop in all_stops:
     print(stop)
-# print(all_stops)
