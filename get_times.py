@@ -4,7 +4,8 @@ this file firstly determines what type of day it is and then based on that gets 
 
 import requests
 from bs4 import BeautifulSoup
-from get_lines import old_hospital_lines
+from get_lines import old_hospital_data, old_hospital_lines
+import json
 
 
 def get_type_of_day():
@@ -56,16 +57,17 @@ def get_line_direction(url):
     return strong.get_text()
     
 
-lines_data =  {}
-
 type_of_day_today = get_type_of_day()   
 
-first_line = old_hospital_lines[0]
+for line in old_hospital_lines:
+    line_number = get_line_number(line)
+    line_direction = get_line_direction(line)
+    number_plus_direction = f'{line_number} -> {line_direction}'
 
-line_number = get_line_number(first_line)
-line_direction = get_line_direction(first_line)
-line_times = get_times_for_today(first_line, type_of_day_today)
+    if number_plus_direction not in old_hospital_data['Stará nemocnica']['Lines']:
+        old_hospital_data['Stará nemocnica']['Lines'][number_plus_direction] = {}
 
-print(line_number)
-print(line_direction)
-print(line_times)
+    old_hospital_data['Stará nemocnica']['Lines'][number_plus_direction]['times'] = get_times_for_today(line, type_of_day_today)
+
+
+print(json.dumps(old_hospital_data, indent=4, ensure_ascii=False))
