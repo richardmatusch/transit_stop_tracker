@@ -6,8 +6,6 @@ in this case i'm hardcoding old hospital because this project is about this stop
 import requests
 from bs4 import BeautifulSoup
 
-# old hospital tram/bus stop url
-url = 'https://www.dpmk.sk/cp/zastavka/184'
 
 def get_links_from_stop(url):
     response = requests.get(url)
@@ -25,4 +23,17 @@ def get_links_from_stop(url):
 
     return links
 
+
+# old hospital tram/bus stop url
+url = 'https://www.dpmk.sk/cp/zastavka/184'
+
+old_hospital_data = {
+    "Stará nemocnica": {
+        "Lines":{
+            
+        }
+    }
+}
+
 old_hospital_lines = get_links_from_stop(url)
+
