@@ -1,3 +1,7 @@
+"""
+this file gets all stops in kosice
+"""
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -18,6 +22,3 @@ def get_stops(url):
     return stops
 
 all_stops = get_stops("https://www.dpmk.sk/cp")
-
-for stop in all_stops:
-    print(stop)
