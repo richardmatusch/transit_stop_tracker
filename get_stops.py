@@ -1,5 +1,5 @@
 """
-this file gets all stops in kosice
+this file gets all stops in kosice.
 """
 
 import requests
@@ -21,4 +21,4 @@ def get_stops(url):
 
     return stops
 
-all_stops = get_stops("https://www.dpmk.sk/cp")
+# all_stops = get_stops("https://www.dpmk.sk/cp")

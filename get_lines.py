@@ -1,5 +1,6 @@
 """
-this file gets links for all buses/trams in all directions for a specific stop 
+this file gets links for all buses/trams in all directions for a specific stop.
+in this case i'm hardcoding old hospital because this project is about this stop only so far.
 """
 
 import requests
