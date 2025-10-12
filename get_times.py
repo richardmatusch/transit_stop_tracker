@@ -17,38 +17,43 @@ def get_type_of_day():
     
     return determined_class
 
-
 def get_times_for_today(url, determined_class):
-    # get times based on type of day (working-days, holidays, free-days)
-    
+    # Get times based on type of day (working-days, holidays, free-days)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    
+
     day_today = soup.find('div', class_=determined_class)
+    if not day_today:
+        return []
+
     time_spans = day_today.find_all('span', attrs={'data-time': True})
-    data_times = [span['data-time'] for span in time_spans]
-    
+    data_times = [span['data-time'] for span in time_spans if 'data-time' in span.attrs]
+
     return data_times
-    
-    
+
 def get_line_number(url):
-    
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    
-    line_number = soup.find('h1').find('span').get_text()
-  
-    return line_number
-    
-    
+
+    h1 = soup.find('h1')
+    if not h1:
+        return None
+
+    span = h1.find('span')
+    if not span:
+        return None
+
+    return span.get_text()
+
 def get_line_direction(url):
-    
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
-    
-    line_direction = soup.find('strong', class_='to').get_text()
-    
-    return line_direction
+
+    strong = soup.find('strong', class_='to')
+    if not strong:
+        return None
+
+    return strong.get_text()
     
 
 lines_data =  {}
