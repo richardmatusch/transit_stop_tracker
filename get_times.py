@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from get_lines import old_hospital_data, old_hospital_lines
 import json
-from datetime import datetime, time
+from datetime import date
 
 
 def get_type_of_day():
@@ -29,7 +29,7 @@ def get_times_for_today(url, determined_class):
         return []
 
     time_spans = day_today.find_all('span', attrs={'data-time': True})
-    data_times = [convert_data_time_to_date_time(span['data-time']) for span in time_spans if 'data-time' in span.attrs]
+    data_times = [convert_data_time_to_time(span['data-time']) for span in time_spans if 'data-time' in span.attrs]
 
     return data_times
 
@@ -57,12 +57,12 @@ def get_line_direction(url):
 
     return strong.get_text()
     
-def convert_data_time_to_date_time(time_str):
+def convert_data_time_to_time(time_str):
     time_str = time_str.zfill(4)
-    hours = int(time_str[:2])
-    minutes = int(time_str[2:])
+    hours = time_str[:2]
+    minutes = time_str[2:]
     
-    return time(hours, minutes)
+    return f"{hours}:{minutes}"
 
     
 type_of_day_today = get_type_of_day()   
@@ -77,5 +77,8 @@ for line in old_hospital_lines:
 
     old_hospital_data['Stará nemocnica']['Lines'][number_plus_direction]['Times'] = get_times_for_today(line, type_of_day_today)
 
-print(old_hospital_data)
 # print(json.dumps(old_hospital_data, indent=4, ensure_ascii=False))
+
+# Save the dictionary to a JSON file
+with open('bus_stop_data.json', 'w', encoding='utf-8') as json_file:
+    json.dump(old_hospital_data, json_file, indent=4, ensure_ascii=False)
