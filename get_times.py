@@ -82,3 +82,5 @@ for line in old_hospital_lines:
 # Save the dictionary to a JSON file
 with open('bus_stop_data.json', 'w', encoding='utf-8') as json_file:
     json.dump(old_hospital_data, json_file, indent=4, ensure_ascii=False)
+    
+# this was changed from raspberry pi
