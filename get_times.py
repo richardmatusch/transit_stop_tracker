@@ -4,8 +4,7 @@ this file firstly determines what type of day it is and then based on that gets 
 
 import requests
 from bs4 import BeautifulSoup
-from get_lines import old_hospital_data, old_hospital_lines
-from get_stops import all_stops
+
 import json
 from datetime import date
 

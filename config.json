@@ -1,3 +1,6 @@
 {
-    "tracked_stop": "255"
+    "tracked_stop": {
+        "name": "Zimná - Staré mesto",
+        "link": "https://www.dpmk.sk/cp/zastavka/222"
+    }
 }
