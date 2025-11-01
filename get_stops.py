@@ -1,5 +1,6 @@
 """
-this file gets all stops in kosice.
+this file gets all stops with links and names into a list. there is no really automated use for it yet.
+im just using stará nemocnica stop manually from the list.
 """
 
 import requests
@@ -21,4 +22,13 @@ def get_stops(url):
 
     return stops
 
-# all_stops = get_stops("https://www.dpmk.sk/cp")
+all_stops = get_stops("https://www.dpmk.sk/cp")
+
+"""
+counter = 1
+for stop in all_stops:
+    print(f"stop {counter}: {stop}")
+    counter += 1
+    
+print(all_stops[208])
+"""
